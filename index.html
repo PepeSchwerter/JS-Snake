@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P" rel="stylesheet">
+    <title>Snake</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            color: white;   
+            background: #dd3e54;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #6be585, #dd3e54);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #6be585, #dd3e54); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            box-sizing: border-box;
+
+        }
+        .container {
+            position: relative;
+            width: 576px;
+            height: 576px;
+            margin: 0 auto;
+            margin-top: 100px;
+            font-size: 30px; 
+        }
+        .game {
+            position:absolute;
+            top: 0;
+            left: 0;
+        }
+        .ui {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: -15px;
+            left: -15px;
+            border: 15px solid white;
+            background-clip: padding-box;
+            text-align: center;   
+        }
+        .controls {
+            margin: 0 auto;
+            margin-top: 60px;
+            text-align: center;
+            width: 350px;
+        }
+        .key {
+            width: 100px;
+        }
+        .key-des {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .score {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+        .obtainedScore{
+            margin: 0 auto;
+            line-height: 1.9;
+            font-size: 25px;
+        }
+        .title {
+            margin: 0 auto;
+            margin-top: 80px;
+            margin-bottom: 180px;
+            animation-name: blinking;
+            animation-iteration-count: infinite;
+            animation-duration: 1s;
+        }
+        .button {
+            margin: 0 auto;
+            width: 250px;
+            transition: all 0.2s;
+        }
+        .button:hover{
+            transform: translateY(-10px);
+            cursor: pointer;
+        }
+        .button:active{
+            transform: translateY(-5px);
+            cursor: pointer;
+        }
+        .resume, .main, .play, .pause, .gameOver, .obtainedScore, .score{
+            display: none;
+        }
+
+        /* UI Control Classes */
+        .mainMenu .main, .mainMenu .play {
+            display: block;
+        }
+        
+        .inGame .score{
+            display: inline-block;
+        }
+
+        .pauseMenu .pause, .pauseMenu .resume {
+            display: block;
+        }
+
+        .inGameOver .gameOver, .inGameOver .play, .inGameOver .obtainedScore{
+            display: block;
+        }
+
+        .pauseMenu, .inGameOver {
+            background-color: rgba(128, 128, 128, 0.486);
+        }
+        
+        .bg {
+            -webkit-box-shadow: 10px 10px 24px -11px rgba(0,0,0,0.75);
+            -moz-box-shadow: 10px 10px 24px -11px rgba(0,0,0,0.75);
+            box-shadow: 10px 10px 24px -11px rgba(0,0,0,0.75);
+        }
+        @keyframes blinking {
+            0% {
+                opacity: 100;
+            }
+            45% {
+                opacity: 100;
+            }
+            50% {
+                opacity: 0;
+            }
+            95% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas class="game bg" id="bg" width="576px" height="576px"></canvas>
+        <canvas class="game" id="snake" width="576px" height="576px"></canvas>
+        <div class="ui mainMenu">
+            <span class="score">0</span>
+            <img src="img/title.png" alt="" class="title main">
+            <img src="img/pause.png" alt="" class="title pause">
+            <img src="img/game_over.png" alt="" class="title gameOver">
+            <img src="img/play.png" alt="" class="button play">
+            <img src="img/resume.png" alt="" class="button resume">
+            <span class="obtainedScore"></span>
+        </div>
+    </div>
+    <div class="controls">
+        <div class="key-des">
+            <img src="img/arrow_keys.png" alt="" class="key">
+            <span>Direction</span>
+        </div>
+        <div class="key-des">
+            <img src="img/space_key.png" alt="" class="key">
+            <span>Pause</span>
+        </div>
+    </div>
+</body>
+<script src="snake.js"></script>
+</html>
